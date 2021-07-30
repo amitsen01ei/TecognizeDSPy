@@ -1,0 +1,58 @@
+Time Complexity:
+Time complexity are defined by Big O notation. It is written as O(n) where n is the rate of how the function grows.
+For example, a linear search will grow over its elements. Hence, the complexity is O(n).
+
+Space Complexity:
+Space complexity works in the same way except it defines the growth of space/memory instead of time.
+
+Example:
+1. Linear Search
+def lin_search(list: List[int], target: int):
+    for index, element in list:
+        if element == target:
+            return index
+
+    return -1
+
+This functions grows over the number of elements it has in the list. The more element it has, the longer it will take
+to find the result. In the worst case, where the element is not present or at the end of the list, if the number of
+elements is N, it will take N iterations. Hence, the time complexity is O(N). However, the space is unchanged and no new
+space is used. Hence, the space complexity is O(1).
+
+2. Reversing an array:
+First approach is to initiate an empty array and fill it from reverse.
+
+def reverse(list: List[int]):
+    result = []
+    start = len(list) - 1
+    end = 0
+
+    while start >= 0:
+        result.append(list[start])
+        start -= 1
+
+    return result
+
+Here, we can see that no matter what, the function will grow over the length of the array with time. Give the size of
+the array is N, the time complexity remains O(N). However, we can also see that a new array has been introduced which
+also takes the same space as the original array. As the original array grows, so will the result array. Hence, the space
+complexity will be O(N).
+
+We can reduce the space complexity with a different approach by eliminating the need of an extra array and change the
+algorithm into reversing the original array. The code is below:
+
+def reverse(li: List[int]):
+    start = 0
+    end = len(li) - 1
+
+    while start < end:
+        temp = li[start]
+        li[start] = li[end]
+        li[end] = temp
+        start += 1
+        end -= 1
+
+What we are doing here is that we are swapping the first and last values to reverse the array. This, however runs half
+the time of our previous method, it will still grow in a linear fashion with the growth of array size N. Hence, the
+time complexity is O(N). However, in terms of space, no new array is used or any variable which size grows over time.
+It means the size remain constant throughout the program. The space complexity is O(1).
